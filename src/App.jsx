@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { 
   Wind, Briefcase, Mic, Frown, Clock, Brain, ChevronLeft, 
   Heart, Sparkles, CloudRain, Flame, 
-  Play, Pause, Sun, Mic2
+  Play, Pause, Sun, Mic2, RefreshCcw
 } from 'lucide-react';
 
 // --- Data & Translations ---
@@ -16,6 +16,7 @@ const translations = {
     stop: "Stop",
     sounds: "Soundscape",
     dailyInsight: "Today's Mindful Insight",
+    minutes: "min",
     menu: {
       meeting: "Nervous before a meeting",
       presentation: "Nervous before a presentation",
@@ -85,7 +86,7 @@ const translations = {
       },
       daily: { 
         title: "Daily Reset", 
-        desc: "Your daily 10 minutes of peace.",
+        desc: "Your daily peace.",
         methods: [
           { name: "Silent Focus", text: "Focus solely on the sensation of air entering and leaving your nostrils." },
           { name: "Gratitude Loop", text: "Inhale 'I am', Exhale 'Grateful'. Think of 3 things you appreciate today." },
@@ -104,6 +105,7 @@ const translations = {
     stop: "Arrêter",
     sounds: "Ambiance",
     dailyInsight: "L'info du jour",
+    minutes: "min",
     menu: {
       meeting: "Nerveux avant réunion",
       presentation: "Avant une présentation",
@@ -126,11 +128,11 @@ const translations = {
       presentation: { title: "Prêt", desc: "Canalisez l'énergie.", methods: [{ name: "Paille", text: "Expirez lentement comme dans une paille." }, { name: "Posture", text: "Mains sur les hanches, tenez 2 minutes." }, { name: "Excitation", text: "Dites: 'Je suis excité', pas nerveux." }, { name: "Vision Périphérique", text: "Regardez les murs sans bouger les yeux." }] },
       anxiety: { title: "Ancrage", desc: "Le présent.", methods: [{ name: "5-4-3-2-1", text: "5 vues, 4 sensations, 3 sons..." }, { name: "Scan Corporel", text: "Contractez et relâchez les muscles." }, { name: "Câlin Papillon", text: "Croisez les bras, tapotez les épaules." }, { name: "Choc Froid", text: "Eau froide sur le visage." }] },
       upset: { title: "Apaisement", desc: "Relâchez.", methods: [{ name: "Secouez-vous", text: "Secouez les mains vigoureusement." }, { name: "Ballon", text: "Imaginez la colère s'envoler." }, { name: "Écrire & Jeter", text: "Écrivez le problème, jetez le papier." }, { name: "Marcher", text: "Changez de pièce." }] },
-      daily: { title: "Reset", desc: "10 min de paix.", methods: [{ name: "Focus", text: "Concentrez-vous sur l'air." }, { name: "Gratitude", text: "Inspirez 'Je suis', Expirez 'Reconnaissant'." }, { name: "Sons", text: "Écoutez les sons lointains." }, { name: "Cœur", text: "Main sur le cœur." }] }
+      daily: { title: "Reset", desc: "Paix.", methods: [{ name: "Focus", text: "Concentrez-vous sur l'air." }, { name: "Gratitude", text: "Inspirez 'Je suis', Expirez 'Reconnaissant'." }, { name: "Sons", text: "Écoutez les sons lointains." }, { name: "Cœur", text: "Main sur le cœur." }] }
     }
   },
   nl: { 
-    title: "ADEM", subtitle: "Hé vriend, pauze?", poweredBy: "Beeple", back: "Terug", start: "Start", stop: "Stop", sounds: "Sfeer", dailyInsight: "Inzicht", 
+    title: "ADEM", subtitle: "Hé vriend, pauze?", poweredBy: "Beeple", back: "Terug", start: "Start", stop: "Stop", sounds: "Sfeer", dailyInsight: "Inzicht", minutes: "min",
     menu: { meeting: "Vergadering", presentation: "Presentatie", anxiety: "Angst", upset: "Overstuur", daily: "Dagelijks", voice: "Geleide Affirmaties" }, 
     voiceSessions: { 
         title: "Affirmaties", desc: "Luister naar positiviteit.", 
@@ -140,10 +142,10 @@ const translations = {
             {title: "Veerkracht", text: "Ik heb 100% van mijn slechte dagen overleefd. Ik ben sterker dan ik denk. Deze moeilijkheid is tijdelijk. Ik bezit de middelen om alles aan te kunnen wat op mijn pad komt. Ik pas me gemakkelijk aan. Ik ben als water, ik stroom om obstakels heen. Mijn moed is luider dan mijn angst. Ik blijf vooruitgaan, stap voor stap."}
         ] 
     }, 
-    content: { meeting: { title: "Rust", desc: "Centreer.", methods: [{ name: "Vierkant", text: "Adem in 4s, vast 4s..." }, { name: "Visualisatie", text: "Zie succes." }, { name: "Water", text: "Drink water." }, { name: "Schouders", text: "Schouders laag." }] }, presentation: { title: "Klaar", desc: "Focus.", methods: [{ name: "Rietje", text: "Adem uit als door rietje." }, { name: "Power Pose", text: "Handen in zij." }, { name: "Spanning", text: "Ik ben enthousiast." }, { name: "Visie", text: "Kijk breed." }] }, anxiety: { title: "Aarding", desc: "Hier zijn.", methods: [{ name: "5-4-3-2-1", text: "5 dingen zien..." }, { name: "Body Scan", text: "Span aan, laat los." }, { name: "Vlinder", text: "Tik op schouders." }, { name: "Kou", text: "Koud water." }] }, upset: { title: "Afkoelen", desc: "Loslaten.", methods: [{ name: "Schudden", text: "Schud alles los." }, { name: "Ballon", text: "Laat ballon gaan." }, { name: "Schrijf", text: "Schrijf en verscheur." }, { name: "Loop", text: "Ga weg." }] }, daily: { title: "Reset", desc: "10 min.", methods: [{ name: "Focus", text: "Adem focus." }, { name: "Dank", text: "Wees dankbaar." }, { name: "Geluid", text: "Luister." }, { name: "Hart", text: "Hand op hart." }] } } 
+    content: { meeting: { title: "Rust", desc: "Centreer.", methods: [{ name: "Vierkant", text: "Adem in 4s, vast 4s..." }, { name: "Visualisatie", text: "Zie succes." }, { name: "Water", text: "Drink water." }, { name: "Schouders", text: "Schouders laag." }] }, presentation: { title: "Klaar", desc: "Focus.", methods: [{ name: "Rietje", text: "Adem uit als door rietje." }, { name: "Power Pose", text: "Handen in zij." }, { name: "Spanning", text: "Ik ben enthousiast." }, { name: "Visie", text: "Kijk breed." }] }, anxiety: { title: "Aarding", desc: "Hier zijn.", methods: [{ name: "5-4-3-2-1", text: "5 dingen zien..." }, { name: "Body Scan", text: "Span aan, laat los." }, { name: "Vlinder", text: "Tik op schouders." }, { name: "Kou", text: "Koud water." }] }, upset: { title: "Afkoelen", desc: "Loslaten.", methods: [{ name: "Schudden", text: "Schud alles los." }, { name: "Ballon", text: "Laat ballon gaan." }, { name: "Schrijf", text: "Schrijf en verscheur." }, { name: "Loop", text: "Ga weg." }] }, daily: { title: "Reset", desc: "Vrede.", methods: [{ name: "Focus", text: "Adem focus." }, { name: "Dank", text: "Wees dankbaar." }, { name: "Geluid", text: "Luister." }, { name: "Hart", text: "Hand op hart." }] } } 
   },
   uk: { 
-    title: "ДИХАЙ", subtitle: "Привіт друже.", poweredBy: "Beeple", back: "Назад", start: "Почати", stop: "Стоп", sounds: "Звуки", dailyInsight: "Інсайт", 
+    title: "ДИХАЙ", subtitle: "Привіт друже.", poweredBy: "Beeple", back: "Назад", start: "Почати", stop: "Стоп", sounds: "Звуки", dailyInsight: "Інсайт", minutes: "хв",
     menu: { meeting: "Зустріч", presentation: "Презентація", anxiety: "Тривога", upset: "Розлад", daily: "Щоденно", voice: "Афірмації" }, 
     voiceSessions: { 
         title: "Афірмації", desc: "Слухайте позитив.", 
@@ -153,10 +155,10 @@ const translations = {
             {title: "Стійкість", text: "Я пережив 100% своїх поганих днів. Я сильніший, ніж думаю. Ці труднощі тимчасові. У мене є ресурси, щоб впоратися з усім, що трапляється на моєму шляху. Я легко адаптуюся. Я як вода, течу навколо перешкод. Моя мужність гучніша за мій страх. Я продовжую рухатися вперед, крок за кроком."}
         ] 
     }, 
-    content: { meeting: { title: "Спокій", desc: "Центр.", methods: [{ name: "Квадрат", text: "Вдих 4с, затримка 4с..." }, { name: "Візуалізація", text: "Уявіть успіх." }, { name: "Вода", text: "Пийте воду." }, { name: "Плечі", text: "Опустіть плечі." }] }, presentation: { title: "Готовність", desc: "Фокус.", methods: [{ name: "Соломинка", text: "Видих через рот." }, { name: "Поза сили", text: "Руки на стегна." }, { name: "Радість", text: "Я радий." }, { name: "Зір", text: "Дивіться широко." }] }, anxiety: { title: "Заземлення", desc: "Тут.", methods: [{ name: "5-4-3-2-1", text: "5 речей..." }, { name: "Тіло", text: "Напружте, розслабте." }, { name: "Метелик", text: "Стукайте по плечах." }, { name: "Холод", text: "Холодна вода." }] }, upset: { title: "Охолодження", desc: "Відпусти.", methods: [{ name: "Трясти", text: "Потрусіть руками." }, { name: "Кулька", text: "Кулька летить." }, { name: "Писати", text: "Напишіть і порвіть." }, { name: "Йти", text: "Ідіть геть." }] }, daily: { title: "Щоденно", desc: "10 хв.", methods: [{ name: "Фокус", text: "Дихання." }, { name: "Вдячність", text: "Дякую." }, { name: "Звуки", text: "Слухайте." }, { name: "Серце", text: "Рука на серці." }] } } 
+    content: { meeting: { title: "Спокій", desc: "Центр.", methods: [{ name: "Квадрат", text: "Вдих 4с, затримка 4с..." }, { name: "Візуалізація", text: "Уявіть успіх." }, { name: "Вода", text: "Пийте воду." }, { name: "Плечі", text: "Опустіть плечі." }] }, presentation: { title: "Готовність", desc: "Фокус.", methods: [{ name: "Соломинка", text: "Видих через рот." }, { name: "Поза сили", text: "Руки на стегна." }, { name: "Радість", text: "Я радий." }, { name: "Зір", text: "Дивіться широко." }] }, anxiety: { title: "Заземлення", desc: "Тут.", methods: [{ name: "5-4-3-2-1", text: "5 речей..." }, { name: "Тіло", text: "Напружте, розслабте." }, { name: "Метелик", text: "Стукайте по плечах." }, { name: "Холод", text: "Холодна вода." }] }, upset: { title: "Охолодження", desc: "Відпусти.", methods: [{ name: "Трясти", text: "Потрусіть руками." }, { name: "Кулька", text: "Кулька летить." }, { name: "Писати", text: "Напишіть і порвіть." }, { name: "Йти", text: "Ідіть геть." }] }, daily: { title: "Щоденно", desc: "Спокій.", methods: [{ name: "Фокус", text: "Дихання." }, { name: "Вдячність", text: "Дякую." }, { name: "Звуки", text: "Слухайте." }, { name: "Серце", text: "Рука на серці." }] } } 
   },
   pt: { 
-    title: "RESPIRE", subtitle: "Ei amigo.", poweredBy: "Beeple", back: "Voltar", start: "Iniciar", stop: "Parar", sounds: "Sons", dailyInsight: "Insight", 
+    title: "RESPIRE", subtitle: "Ei amigo.", poweredBy: "Beeple", back: "Voltar", start: "Iniciar", stop: "Parar", sounds: "Sons", dailyInsight: "Insight", minutes: "min",
     menu: { meeting: "Reunião", presentation: "Apresentação", anxiety: "Ansiedade", upset: "Chateado", daily: "Diário", voice: "Afirmações" }, 
     voiceSessions: { 
         title: "Afirmações", desc: "Ouça.", 
@@ -166,10 +168,10 @@ const translations = {
             {title: "Força", text: "Sobrevivi a 100% dos meus dias ruins. Sou mais forte do que penso. Essa dificuldade é temporária. Possuo os recursos para lidar com o que vier. Adapto-me com facilidade. Sou como a água, fluo ao redor dos obstáculos. Minha coragem é mais alta que meu medo. Continuo seguindo em frente, um passo de cada vez."}
         ] 
     }, 
-    content: { meeting: { title: "Calma", desc: "Concentre-se.", methods: [{ name: "Quadrada", text: "Inspire 4s..." }, { name: "Visualização", text: "Sucesso." }, { name: "Água", text: "Beba água." }, { name: "Ombros", text: "Solte os ombros." }] }, presentation: { title: "Pronto", desc: "Foco.", methods: [{ name: "Palhinha", text: "Expire lento." }, { name: "Poder", text: "Mãos na cintura." }, { name: "Ânimo", text: "Estou animado." }, { name: "Visão", text: "Olhar difuso." }] }, anxiety: { title: "Aterrar", desc: "Agora.", methods: [{ name: "5-4-3-2-1", text: "5 coisas..." }, { name: "Corpo", text: "Tensione e solte." }, { name: "Borboleta", text: "Toque ombros." }, { name: "Gelo", text: "Água fria." }] }, upset: { title: "Calma", desc: "Solte.", methods: [{ name: "Sacudir", text: "Sacuda mãos." }, { name: "Balão", text: "Balão voa." }, { name: "Escrever", text: "Escreva e rasgue." }, { name: "Andar", text: "Saia." }] }, daily: { title: "Reset", desc: "10 min.", methods: [{ name: "Foco", text: "Respire." }, { name: "Gratidão", text: "Sou grato." }, { name: "Sons", text: "Ouça." }, { name: "Coração", text: "Mão no peito." }] } } 
+    content: { meeting: { title: "Calma", desc: "Concentre-se.", methods: [{ name: "Quadrada", text: "Inspire 4s..." }, { name: "Visualização", text: "Sucesso." }, { name: "Água", text: "Beba água." }, { name: "Ombros", text: "Solte os ombros." }] }, presentation: { title: "Pronto", desc: "Foco.", methods: [{ name: "Palhinha", text: "Expire lento." }, { name: "Poder", text: "Mãos na cintura." }, { name: "Ânimo", text: "Estou animado." }, { name: "Visão", text: "Olhar difuso." }] }, anxiety: { title: "Aterrar", desc: "Agora.", methods: [{ name: "5-4-3-2-1", text: "5 coisas..." }, { name: "Corpo", text: "Tensione e solte." }, { name: "Borboleta", text: "Toque ombros." }, { name: "Gelo", text: "Água fria." }] }, upset: { title: "Calma", desc: "Solte.", methods: [{ name: "Sacudir", text: "Sacuda mãos." }, { name: "Balão", text: "Balão voa." }, { name: "Escrever", text: "Escreva e rasgue." }, { name: "Andar", text: "Saia." }] }, daily: { title: "Reset", desc: "Paz.", methods: [{ name: "Foco", text: "Respire." }, { name: "Gratidão", text: "Sou grato." }, { name: "Sons", text: "Ouça." }, { name: "Coração", text: "Mão no peito." }] } } 
   },
   es: { 
-    title: "RESPIRA", subtitle: "Oye amigo.", poweredBy: "Beeple", back: "Atrás", start: "Iniciar", stop: "Parar", sounds: "Sonidos", dailyInsight: "Insight", 
+    title: "RESPIRA", subtitle: "Oye amigo.", poweredBy: "Beeple", back: "Atrás", start: "Iniciar", stop: "Parar", sounds: "Sonidos", dailyInsight: "Insight", minutes: "min",
     menu: { meeting: "Reunión", presentation: "Presentación", anxiety: "Ansiedad", upset: "Molesto", daily: "Diario", voice: "Afirmaciones" }, 
     voiceSessions: { 
         title: "Afirmaciones", desc: "Escucha.", 
@@ -179,7 +181,7 @@ const translations = {
             {title: "Fuerza", text: "He sobrevivido al 100% de mis días malos. Soy más fuerte de lo que creo. Esta dificultad es temporal. Poseo los recursos para manejar lo que venga. Me adapto con facilidad. Soy como el agua, fluyo alrededor de los obstáculos. Mi valentía es más fuerte que mi miedo. Sigo adelante, paso a paso."}
         ] 
     }, 
-    content: { meeting: { title: "Calma", desc: "Céntrate.", methods: [{ name: "Cuadrada", text: "Inhala 4s..." }, { name: "Visualización", text: "Éxito." }, { name: "Agua", text: "Bebe agua." }, { name: "Hombros", text: "Baja hombros." }] }, presentation: { title: "Listo", desc: "Enfoque.", methods: [{ name: "Pajita", text: "Exhala lento." }, { name: "Poder", text: "Manos cintura." }, { name: "Ánimo", text: "Estoy animado." }, { name: "Visión", text: "Mirada suave." }] }, anxiety: { title: "Conexión", desc: "Ahora.", methods: [{ name: "5-4-3-2-1", text: "5 cosas..." }, { name: "Cuerpo", text: "Tensa y suelta." }, { name: "Mariposa", text: "Toca hombros." }, { name: "Hielo", text: "Agua fría." }] }, upset: { title: "Enfriar", desc: "Suelta.", methods: [{ name: "Sacudir", text: "Sacude manos." }, { name: "Globo", text: "Globo vuela." }, { name: "Escribir", text: "Escribe y rompe." }, { name: "Caminar", text: "Vete." }] }, daily: { title: "Reinicio", desc: "10 min.", methods: [{ name: "Foco", text: "Respira." }, { name: "Gratitud", text: "Soy grato." }, { name: "Sonidos", text: "Escucha." }, { name: "Corazón", text: "Mano pecho." }] } } 
+    content: { meeting: { title: "Calma", desc: "Céntrate.", methods: [{ name: "Cuadrada", text: "Inhala 4s..." }, { name: "Visualización", text: "Éxito." }, { name: "Agua", text: "Bebe agua." }, { name: "Hombros", text: "Baja hombros." }] }, presentation: { title: "Listo", desc: "Enfoque.", methods: [{ name: "Pajita", text: "Exhala lento." }, { name: "Poder", text: "Manos cintura." }, { name: "Ánimo", text: "Estoy animado." }, { name: "Visión", text: "Mirada suave." }] }, anxiety: { title: "Conexión", desc: "Ahora.", methods: [{ name: "5-4-3-2-1", text: "5 cosas..." }, { name: "Cuerpo", text: "Tensa y suelta." }, { name: "Mariposa", text: "Toca hombros." }, { name: "Hielo", text: "Agua fría." }] }, upset: { title: "Enfriar", desc: "Suelta.", methods: [{ name: "Sacudir", text: "Sacude manos." }, { name: "Globo", text: "Globo vuela." }, { name: "Escribir", text: "Escribe y rompe." }, { name: "Caminar", text: "Vete." }] }, daily: { title: "Reinicio", desc: "Paz.", methods: [{ name: "Foco", text: "Respira." }, { name: "Gratitud", text: "Soy grato." }, { name: "Sonidos", text: "Escucha." }, { name: "Corazón", text: "Mano pecho." }] } } 
   }
 };
 
@@ -189,7 +191,10 @@ const facts = [
   "Regular meditation changes the brain's neuroplasticity in 8 weeks.",
   "Writing down worries before a meeting frees up working memory.",
   "A 20-minute nap can improve alertness and performance without grogginess.",
-  "Physical clutter often leads to mental clutter. Try organizing one small space."
+  "Physical clutter often leads to mental clutter. Try organizing one small space.",
+  "Your breath is the only part of the autonomic nervous system you can control consciously.",
+  "Spending 20 minutes in nature significantly lowers stress hormones.",
+  "Humming stimulates the vagus nerve and creates internal calming vibrations."
 ];
 
 // --- Audio Helper (Lazy Loaded & Robust) ---
@@ -201,6 +206,31 @@ const getAudioContext = () => {
     globalAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
   }
   return globalAudioCtx;
+};
+
+// --- SOFT PING SOUND (Bell) ---
+const playBell = () => {
+  const ctx = getAudioContext();
+  if (!ctx) return;
+  if (ctx.state === 'suspended') ctx.resume();
+
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  // Bell-like Sine wave
+  osc.type = 'sine';
+  osc.frequency.setValueAtTime(880, ctx.currentTime); // A5
+  
+  // Envelope for "ping" sound (instant attack, slow decay)
+  gain.gain.setValueAtTime(0, ctx.currentTime);
+  gain.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 0.05); // Attack
+  gain.gain.exponentialRampToValueAtTime(0.00001, ctx.currentTime + 2); // Decay
+
+  osc.start(ctx.currentTime);
+  osc.stop(ctx.currentTime + 2.5);
 };
 
 const playNoise = (type) => {
@@ -224,7 +254,6 @@ const playNoise = (type) => {
       const b0 = 0.99886 * (i > 0 ? data[i-1] : 0) + white * 0.0555179;
       data[i] = b0; 
     }
-    // Ocean/Brown noise logic removed
   }
 
   const noise = ctx.createBufferSource();
@@ -244,7 +273,6 @@ const playNoise = (type) => {
      biquadFilter.type = "highpass";
      biquadFilter.frequency.value = 500;
   }
-  // Ocean/Brown filter logic removed
 
   noise.connect(biquadFilter);
   biquadFilter.connect(gainNode);
@@ -265,19 +293,18 @@ const playDrone = () => {
         ctx.resume();
     }
 
-    // Use two oscillators with Triangle waves for a richer, more audible "Om" sound
     const osc1 = ctx.createOscillator();
     const osc2 = ctx.createOscillator();
     const gain = ctx.createGain();
     
     osc1.type = 'triangle';
-    osc2.type = 'triangle'; // Triangle is louder/richer than Sine on phones
+    osc2.type = 'triangle'; 
     
     osc1.frequency.setValueAtTime(110, ctx.currentTime); // A2
-    osc2.frequency.setValueAtTime(112, ctx.currentTime); // Slight detune for "shimmer" effect
+    osc2.frequency.setValueAtTime(112, ctx.currentTime); 
 
     gain.gain.setValueAtTime(0, ctx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 2); // Louder volume
+    gain.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 2); 
     
     osc1.connect(gain);
     osc2.connect(gain);
@@ -299,7 +326,7 @@ const playDrone = () => {
 
 const BreathingCircle = ({ active }) => {
   return (
-    <div className="relative flex items-center justify-center h-56 w-56 md:h-72 md:w-72 mt-4 mb-8">
+    <div className="relative flex items-center justify-center h-56 w-56 md:h-72 md:w-72 mt-4 mb-4">
       <div className={`absolute inset-0 rounded-full bg-cyan-400 blur-3xl opacity-20 ${active ? 'animate-pulse' : ''}`}></div>
       {/* Wave Layers */}
       <div className={`absolute inset-0 border border-cyan-500/30 rounded-full transition-all duration-[4000ms] ease-in-out ${active ? 'scale-150 opacity-0' : 'scale-90 opacity-100'}`}></div>
@@ -322,7 +349,9 @@ const App = () => {
   const [activeMethodIndex, setActiveMethodIndex] = useState(0);
   
   const [isBreathing, setIsBreathing] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(600); 
+  const [timeLeft, setTimeLeft] = useState(0); 
+  const [selectedDuration, setSelectedDuration] = useState(null); // null, 60, 180, 300
+
   const [currentFact, setCurrentFact] = useState(facts[0]);
 
   // Voice Section State
@@ -338,16 +367,14 @@ const App = () => {
   const t = translations[lang];
 
   useEffect(() => {
-    setCurrentFact(facts[Math.floor(Math.random() * facts.length)]);
+    shuffleFact();
     
-    // Voice Loading Listener
     const handleVoicesChanged = () => {
         setVoicesLoaded(true);
     };
     
     if (window.speechSynthesis) {
         window.speechSynthesis.onvoiceschanged = handleVoicesChanged;
-        // Check if voices are already loaded
         if (window.speechSynthesis.getVoices().length > 0) {
             setVoicesLoaded(true);
         }
@@ -358,7 +385,11 @@ const App = () => {
     }
   }, []);
 
-  // Use Text Codes instead of Emoji Flags for reliability
+  const shuffleFact = () => {
+    const randomFact = facts[Math.floor(Math.random() * facts.length)];
+    setCurrentFact(randomFact);
+  };
+
   const langCodes = { en: "EN", fr: "FR", nl: "NL", uk: "UK", pt: "PT", es: "ES" };
 
   const scenarios = [
@@ -376,21 +407,19 @@ const App = () => {
        // Stop
        if (soundNodeRef.current && soundNodeRef.current.gain) {
          soundNodeRef.current.gain.gain.exponentialRampToValueAtTime(0.001, soundNodeRef.current.ctx.currentTime + 0.5);
-         // Small timeout to allow fade out
          setTimeout(() => {
              try { soundNodeRef.current.source.stop(); } catch(e){}
          }, 600);
        }
        setActiveSound(null);
     } else {
-       // Stop previous if exists
        if (soundNodeRef.current && soundNodeRef.current.source) {
          try { soundNodeRef.current.source.stop(); } catch (e) { /* ignore */ }
        }
        
        let node;
        if (type === 'drone') node = playDrone();
-       else node = playNoise(type); // white (rain), pink (fire)
+       else node = playNoise(type); 
 
        soundNodeRef.current = node;
        setActiveSound(type);
@@ -404,17 +433,16 @@ const App = () => {
       setIsPlayingVoice(false);
     } else {
       const text = t.voiceSessions.themes[currentThemeIndex].text;
-      const longText = `${text} ... ${text} ... ${text}`; // Repeat
+      const longText = `${text} ... ${text} ... ${text}`; 
       
       const utterance = new SpeechSynthesisUtterance(longText);
-      utterance.rate = 0.85; // Natural slow pace
+      utterance.rate = 0.85; 
       utterance.pitch = 1;
       
       const voices = window.speechSynthesis.getVoices();
       
-      // Map App Language Code to SpeechSynthesis Language Code prefix
       const langMap = {
-        'en': 'en-GB', // Prefer British for English
+        'en': 'en-GB', 
         'fr': 'fr',
         'nl': 'nl',
         'uk': 'uk',
@@ -424,15 +452,10 @@ const App = () => {
       
       const targetLang = langMap[lang] || lang;
       
-      // 1. Try to find a Google voice for the specific language (usually high quality)
       let selectedVoice = voices.find(v => v.lang.startsWith(targetLang) && v.name.includes("Google"));
-      
-      // 2. If not, try to find any voice matching the language
       if (!selectedVoice) {
          selectedVoice = voices.find(v => v.lang.startsWith(targetLang));
       }
-      
-      // 3. Fallback for English specifically (Apple Samantha etc)
       if (!selectedVoice && lang === 'en') {
          selectedVoice = voices.find(v => v.name.includes("Samantha"));
       }
@@ -447,20 +470,44 @@ const App = () => {
     }
   };
 
+  const selectDuration = (minutes) => {
+      if (isBreathing) return; // Prevent changing while running
+      const seconds = minutes * 60;
+      setSelectedDuration(seconds);
+      setTimeLeft(seconds);
+  };
+
   const handleStartBreathing = () => {
-    setIsBreathing(!isBreathing);
-    if (!isBreathing && activeScenario === 'daily') {
-      timerRef.current = setInterval(() => {
-        setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
-      }, 1000);
+    if (isBreathing) {
+        // User pressed Stop
+        setIsBreathing(false);
+        clearInterval(timerRef.current);
+        // Do not reset timeLeft here so they can see where they stopped, 
+        // or optionally reset it. Let's keep it to allow Resume or manual reset.
     } else {
-      clearInterval(timerRef.current);
+        // User pressed Start
+        if (timeLeft <= 0 && selectedDuration) {
+             setTimeLeft(selectedDuration); // Reset if finished
+        }
+        setIsBreathing(true);
+        
+        timerRef.current = setInterval(() => {
+            setTimeLeft((prev) => {
+                if (prev <= 1) {
+                    // Timer finished
+                    clearInterval(timerRef.current);
+                    setIsBreathing(false);
+                    playBell(); // Play Ping Sound
+                    return 0;
+                }
+                return prev - 1;
+            });
+        }, 1000);
     }
   };
 
   const handleBack = () => {
       setActiveScenario(null);
-      // STOP Sound if playing
       if (activeSound) {
           toggleSound(activeSound);
       }
@@ -481,7 +528,8 @@ const App = () => {
   useEffect(() => {
     setIsBreathing(false);
     clearInterval(timerRef.current);
-    setTimeLeft(600);
+    setSelectedDuration(null); // No timer selected by default
+    setTimeLeft(0);
     setActiveMethodIndex(0);
     setIsPlayingVoice(false);
     if (window.speechSynthesis) window.speechSynthesis.cancel();
@@ -504,8 +552,6 @@ const App = () => {
       </div>
 
       <div className="relative z-10 w-full max-w-3xl mx-auto flex flex-col flex-1 h-full p-6">
-        {/* DEBUG BANNER: Visible during development to confirm React render */}
-        {import.meta.env.MODE === 'development' && <div className="fixed top-4 left-4 z-50 px-3 py-1 rounded-md bg-rose-600 text-white text-xs font-semibold shadow-md">DEV: App mounted</div>}
         
         {/* Header */}
         <header className="flex justify-between items-center mb-8 shrink-0">
@@ -519,13 +565,12 @@ const App = () => {
              </button>
           ) : (
             <div className="flex items-center gap-3">
-              {/* App Logo - Small Red Heart */}
               <Heart className="w-8 h-8 text-rose-500 fill-rose-500" />
               <h1 className="text-xl md:text-2xl font-bold tracking-tight text-white">{t.title}</h1>
             </div>
           )}
 
-          {/* Language Selector (Text Codes) */}
+          {/* Language Selector */}
           <div className="relative">
             <button 
               onClick={() => setLangMenuOpen(!langMenuOpen)}
@@ -566,35 +611,39 @@ const App = () => {
                 </h2>
               </div>
 
-              {/* Grid Layout */}
+              {/* UPDATED Grid Layout: Bigger Icons, Centered Text */}
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
                 {scenarios.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => setActiveScenario(item.id)}
-                    className="relative group bg-slate-800 hover:bg-slate-700/80 transition-transform duration-200 transform hover:-translate-y-1 hover:scale-[1.02] p-4 rounded-2xl border border-white/5 shadow-lg flex flex-col items-start gap-3 justify-between h-36 overflow-hidden"
+                    className="relative group bg-slate-800 hover:bg-slate-700/80 transition-transform duration-200 transform hover:-translate-y-1 hover:scale-[1.02] p-4 rounded-2xl border border-white/5 shadow-lg flex flex-col items-center justify-center gap-4 h-36 overflow-hidden text-center"
                   >
-                    <div className={`p-2 rounded-lg bg-gradient-to-br ${item.color} text-white shadow-lg`}>
-                      <item.icon className="w-5 h-5" />
+                    <div className={`p-3 rounded-xl bg-gradient-to-br ${item.color} text-white shadow-lg`}>
+                      <item.icon className="w-8 h-8" />
                     </div>
-                    <span className="font-medium text-slate-200 text-xs leading-snug text-left">{t.menu[item.id]}</span>
+                    <span className="font-medium text-slate-200 text-sm leading-snug">{t.menu[item.id]}</span>
                     
-                    {/* Hover Glow Effect */}
                     <div className="absolute -right-4 -bottom-4 w-16 h-16 bg-white/5 rounded-full blur-xl group-hover:bg-white/10 transition-colors"></div>
                   </button>
                 ))}
               </div>
 
-              {/* Daily Insight Card */}
+              {/* Daily Insight Card with Shuffle */}
               <div className="mt-auto bg-gradient-to-br from-[#0e0f11]/60 to-[#121215]/60 rounded-2xl p-6 border border-white/5 relative overflow-hidden group shadow-[0_10px_30px_rgba(2,6,23,0.5)]">
                  <div className="absolute right-0 top-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
                     <Brain className="w-20 h-20" />
                  </div>
                  <div className="relative z-10">
-                    <h3 className="text-cyan-500 text-[10px] font-bold uppercase tracking-widest mb-2 flex items-center gap-2">
-                        <Sparkles className="w-3 h-3" /> {t.dailyInsight}
-                    </h3>
-                    <p className="text-sm text-slate-400 italic leading-relaxed">"{currentFact}"</p>
+                    <div className="flex justify-between items-start mb-2">
+                        <h3 className="text-cyan-500 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
+                            <Sparkles className="w-3 h-3" /> {t.dailyInsight}
+                        </h3>
+                        <button onClick={shuffleFact} className="text-slate-600 hover:text-cyan-400 transition-colors">
+                            <RefreshCcw className="w-4 h-4" />
+                        </button>
+                    </div>
+                    <p className="text-sm text-slate-400 italic leading-relaxed animate-in fade-in duration-500" key={currentFact}>"{currentFact}"</p>
                  </div>
               </div>
             </div>
@@ -611,16 +660,16 @@ const App = () => {
 
                {/* Theme Selection */}
                <div className="w-full space-y-3 mb-8">
-                  {t.voiceSessions.themes.map((theme, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => { setCurrentThemeIndex(idx); setIsPlayingVoice(false); window.speechSynthesis.cancel(); }}
-                      className={`w-full p-4 rounded-2xl text-left border transition-all flex items-center justify-between ${currentThemeIndex === idx ? 'bg-amber-900/20 border-amber-500/50 text-amber-100' : 'bg-slate-800 border-slate-700 text-slate-400'}`}
-                    >
-                      <span className="font-medium">{theme.title}</span>
-                      {currentThemeIndex === idx && <div className="w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]"></div>}
-                    </button>
-                  ))}
+                 {t.voiceSessions.themes.map((theme, idx) => (
+                   <button
+                     key={idx}
+                     onClick={() => { setCurrentThemeIndex(idx); setIsPlayingVoice(false); window.speechSynthesis.cancel(); }}
+                     className={`w-full p-4 rounded-2xl text-left border transition-all flex items-center justify-between ${currentThemeIndex === idx ? 'bg-amber-900/20 border-amber-500/50 text-amber-100' : 'bg-slate-800 border-slate-700 text-slate-400'}`}
+                   >
+                     <span className="font-medium">{theme.title}</span>
+                     {currentThemeIndex === idx && <div className="w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]"></div>}
+                   </button>
+                 ))}
                </div>
 
                <div className="mt-auto w-full">
@@ -639,7 +688,7 @@ const App = () => {
             <div className="flex flex-col items-center h-full animate-in zoom-in-95 duration-300 pb-4 overflow-y-auto scrollbar-hide">
               
               {/* Sound Controls */}
-              <div className="w-full flex justify-between items-center mb-6 bg-[#0f1113] p-3 rounded-2xl border border-white/5 shadow-sm">
+              <div className="w-full flex justify-between items-center mb-4 bg-[#0f1113] p-3 rounded-2xl border border-white/5 shadow-sm">
                  <span className="text-[10px] uppercase tracking-widest text-slate-500 ml-2 font-bold">{t.sounds}</span>
                  <div className="flex gap-1">
                    {[
@@ -669,9 +718,9 @@ const App = () => {
               {/* Visualization */}
               <BreathingCircle active={isBreathing} />
               
-              {/* Daily Timer */}
-              {activeScenario === 'daily' && (
-                <div className="text-5xl font-light text-slate-200 font-mono mb-6 tracking-wider">
+              {/* Timer Display (Shows if active OR if duration selected) */}
+              {(isBreathing || selectedDuration) && (
+                <div className="text-5xl font-light text-slate-200 font-mono mb-6 tracking-wider animate-in fade-in">
                   {formatTime(timeLeft)}
                 </div>
               )}
@@ -701,17 +750,42 @@ const App = () => {
                 </div>
               </div>
 
-              {/* Action Button */}
-              <button
-                onClick={handleStartBreathing}
-                className={`w-full py-4 md:py-5 rounded-3xl font-bold text-sm md:text-base tracking-widest uppercase shadow-2xl hover:scale-[1.01] transition-all duration-300 transform flex items-center justify-center gap-2 ${
-                  isBreathing 
-                    ? 'bg-rose-900/20 text-rose-400 border border-rose-900/50' 
-                    : 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white border border-cyan-500/50'
-                }`}
-              >
-                {isBreathing ? <><Pause className="w-4 h-4"/> {t.stop}</> : <><Play className="w-4 h-4"/> {t.start}</>}
-              </button>
+              {/* TIMER OPTIONS & ACTION BUTTON */}
+              <div className="w-full bg-[#0a0a0c]/80 backdrop-blur-md pt-2">
+                
+                {/* Timer Duration Selector (Only show if not currently breathing) */}
+                {!isBreathing && (
+                    <div className="flex justify-center gap-3 mb-4">
+                        {[1, 3, 5].map((min) => (
+                            <button
+                                key={min}
+                                onClick={() => selectDuration(min)}
+                                className={`px-4 py-2 rounded-full text-xs font-bold border transition-all ${
+                                    selectedDuration === min * 60 
+                                    ? 'bg-cyan-500 text-white border-cyan-500' 
+                                    : 'bg-slate-800 text-slate-400 border-slate-700 hover:border-slate-500'
+                                }`}
+                            >
+                                {min} {t.minutes}
+                            </button>
+                        ))}
+                    </div>
+                )}
+
+                {/* Action Button (Hidden if no duration selected) */}
+                {(selectedDuration !== null || isBreathing) && (
+                    <button
+                        onClick={handleStartBreathing}
+                        className={`w-full py-4 md:py-5 rounded-3xl font-bold text-sm md:text-base tracking-widest uppercase shadow-2xl hover:scale-[1.01] transition-all duration-300 transform flex items-center justify-center gap-2 ${
+                        isBreathing 
+                            ? 'bg-rose-900/20 text-rose-400 border border-rose-900/50' 
+                            : 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white border border-cyan-500/50'
+                        }`}
+                    >
+                        {isBreathing ? <><Pause className="w-4 h-4"/> {t.stop}</> : <><Play className="w-4 h-4"/> {t.start}</>}
+                    </button>
+                )}
+              </div>
 
             </div>
           )}
