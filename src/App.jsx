@@ -22,7 +22,7 @@ const translations = {
       presentation: "Nervous before a presentation",
       anxiety: "General anxiety",
       upset: "Upset after a meeting",
-      daily: "10-min Daily Meditation",
+      daily: "Daily Meditation",
       voice: "Guided Affirmations (Voice)",
     },
     voiceSessions: {
