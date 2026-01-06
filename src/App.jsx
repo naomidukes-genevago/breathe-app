@@ -27,6 +27,8 @@ const translations = {
     sounds: "Soundscape",
     dailyInsight: "Today's Mindful Insight",
     minutes: "min",
+    stretchingTitle: "Mindful Stretching", // FIXED: Added missing title
+    stretchingDesc: "Physical release for a calm mind.", // FIXED: Added missing description
     menu: {
       meeting: "Nervous before a meeting",
       presentation: "Nervous before a presentation",
@@ -89,84 +91,17 @@ const translations = {
       title: "Geleide Affirmaties", desc: "Sluit je ogen. Continue positiviteit.",
       themes: [
         { title: "Eigenwaarde", text: "Ik ben genoeg zoals ik ben. Ik hoef me aan niemand te bewijzen. Mijn waarde wordt niet bepaald door productiviteit. Ik adem vertrouwen in en twijfel uit. Ik ben sterk en waardevol." },
-        { title: "Kalmte", text: "Ik ben kalm en gecentreerd. De wereld is chaotisch, maar mijn innerlijke wereld is vredig. Ik laat de spanning in mijn schouders, kaken en voorhoofd los. Gedachten zijn als wolken." },
+        { title: "Kalmte", text: "Ik ben kalm and gecentreerd. De wereld is chaotisch, maar mijn innerlijke wereld is vredig. Ik laat de spanning in mijn schouders, kaken en voorhoofd los. Gedachten zijn als wolken." },
         { title: "Veerkracht", text: "Ik heb 100% van mijn slechte dagen overleefd. Ik ben sterker dan ik denk. Deze moeilijkheid is tijdelijk. Ik bezit de middelen om alles aan te kunnen wat op mijn pad komt." }
       ]
     },
     content: {
       meeting: { title: "Rust voor de Meeting", desc: "Centreer jezelf.", methods: [{ name: "Vierkant Ademhalen", text: "Adem 4 seconden in, houd 4 seconden vast, adem 4 seconden uit, en houd 4 seconden vast. Herhaal dit om je cortisol te verlagen." }, { name: "Visualisatie", text: "Sluit je ogen. Stel je voor dat de vergadering perfect verloopt. Zie jezelf glimlachen, duidelijk spreken en gehoord worden." }, { name: "Slok Water", text: "Neem een langzame, bewuste slok water. Voel de koelte. Dit reset je slikreflex en kalmeert je zenuwstelsel onmiddellijk." }, { name: "Schouder Drop", text: "Trek je schouders zo hoog mogelijk op naar je oren, houd vast, en laat ze dan plotseling vallen. Doe dit 3 keer om spanning los te laten." }] },
-      presentation: { title: "Klaar voor de Start", desc: "Focus je energie.", methods: [{ name: "Rietje Adem", text: "Adem snel in door je neus en adem heel langzaam uit door getuite lippen, alsof je heel voorzichtig door een rietje blaast." }, { name: "Power Pose", text: "Ga rechtop staan met je benen gespreid en je handen op je heupen. Houd dit 2 minuten vast om je zelfvertrouwen te vergroten." }, { name: "Herwaardering", text: "Zeg hardop: 'Ik ben niet zenuwachtig, ik ben enthousiast.' Dit helpt je hersenen om de zenuwachtige energie positief te gebruiken." }, { name: "Breed Kijken", text: "Maak je blik zacht. Probeer de muren links en rechts van je te zien zonder je ogen te bewegen. Dit activeert directe kalmte." }] },
-      anxiety: { title: "Aarding", desc: "Terug naar het nu.", methods: [{ name: "5-4-3-2-1", text: "Zoek 5 dingen die je ziet, 4 die je voelt, 3 die je hoort, 2 die je ruikt en 1 die je kunt proeven op dit moment." }, { name: "Body Scan", text: "Begin bij je tenen. Span ze 5 seconden aan en laat dan volledig los. Werk langzaam omhoog naar je kuiten, knieën en je gezicht." }, { name: "Vlinderknuffel", text: "Kruis je armen over je borst. Tik ritmisch op je schouders. Links, rechts, links, rechts, totdat je je weer geaard voelt." }, { name: "Koude Schok", text: "Spat koud water op je gezicht of houd een ijsblokje vast in je hand. Dit stimuleert de nervus vagus om je systeem te resetten." }] },
-      upset: { title: "Afkoelen", desc: "Laat het los.", methods: [{ name: "Schud het los", text: "Schud je handen en benen krachtig gedurende 30 seconden. Dit helpt je lichaam om de adrenaline van de boosheid af te voeren." }, { name: "Ballon Loslaten", text: "Stel je voor dat je boosheid een rode ballon is. Snijd het touwtje door en zie hem wegvliegen in de lucht tot hij verdwijnt." }, { name: "Schrijf & Scheur", text: "Schrijf precies op wat je dwarszit op papier, en scheur het daarna fysiek of mentaal in duizend kleine stukjes." }, { name: "Loop weg", text: "Verander van omgeving. Loop naar een raam of stap even naar buiten. Fysieke afstand zorgt onmiddellijk voor mentale perspectief." }] },
-      daily: { title: "Dagelijkse Reset", desc: "Vrede in jezelf.", methods: [{ name: "Stille Focus", text: "Focus alleen op de lucht die je neus in- en uitgaat. Als je gedachten afdwalen, breng ze dan zonder oordeel weer terug." }, { name: "Dankbaarheid", text: "Adem in: 'Ik ben', Adem uit: 'Dankbaar'. Denk aan 3 kleine dingen die je vandaag echt waardeert in je leven." }, { name: "Geluidsbewustzijn", text: "Sluit je ogen. Luister naar het verste geluid dat je kunt horen. Luister daarna naar het aller dichtstbijzijnde geluid." }, { name: "Hand op Hart", text: "Plaats je hand op je hart. Voel de warmte en de hartslag. Maak contact met je innerlijke kracht en vrede." }] },
       stretch: { title: "Fysieke Ontspanning", desc: "Ontspan en volg de gids.", methods: [
         { name: "Nek & Schouders", text: "Laat je kin voorzichtig op je borst zakken. Rol je hoofd langzaam naar je linkerschouder, terug naar het midden, en dan naar rechts.", id: 'neck' },
         { name: "Zittende Draai", text: "Zit rechtop met je voeten plat op de grond. Plaats je rechterhand op je linkerknie en je linkerhand achter je. Draai je torso rustig.", id: 'twist' },
         { name: "Borst Opener", text: "Breng je handen achter je rug en verstrengel je vingers. Trek je schouderbladen naar elkaar toe en til je borst op naar het plafond.", id: 'chest' },
         { name: "Vooroverbuiging", text: "Adem uit en buig vanuit je heupen naar voren. Laat je bovenlichaam zwaar hangen naar je schoot. Ontspan je nek volledig.", id: 'fold' }
-      ]}
-    }
-  },
-  uk: {
-    subtitle: "Привіт друже, зроби паузу.", poweredBy: "Beeple", back: "Назад", start: "Старт", stop: "Стоп", sounds: "Звуки", dailyInsight: "Порада дня", minutes: "хв", stretchingTitle: "Усвідомлена Розминка", stretchingDesc: "Фізичне розслаблення для спокою розуму.",
-    menu: { meeting: "Хвилювання перед зустріччю", presentation: "Перед презентацією", anxiety: "Загальна тривога", upset: "Розлад після розмови", daily: "Щоденна медитація", voice: "Афірмації" },
-    voiceSessions: {
-      title: "Афірмації", desc: "Слухайте позитив.",
-      themes: [
-        { title: "Самоцінність", text: "Я достатній такий, який я є. Мені не потрібно нікому нічого доводити. Моя цінність не визначається моєю продуктивністю. Я вдихаю впевненість і видихаю сумніви." },
-        { title: "Спокій", text: "Я спокійний і зосереджений. Світ навколо може бути хаотичним, але мій внутрішній світ мирний. Я знімаю напругу з плечей, щелепи та чола. Я в мирі." },
-        { title: "Стійкість", text: "Я пережив 100% своїх поганих днів. Я сильніший, ніж думаю. Ці труднощі тимчасові. У мене є ресурси, щоб впоратися з усім. Я продовжую рухатися вперед." }
-      ]
-    },
-    content: {
-      meeting: { title: "Спокій перед зустріччю", desc: "Центруйтеся.", methods: [{ name: "Квадратне дихання", text: "Вдих на 4 секунди, затримка на 4, видих на 4, затримка на 4. Повторюйте цей цикл для зниження рівня кортизолу." }, { name: "Візуалізація успіху", text: "Закрийте очі. Уявіть, як зустріч проходить ідеально. Побачте себе впевненим, усміхненим та почутим іншими." }, { name: "Ковток води", text: "Зробіть повільний, усвідомлений ковток води. Відчуйте прохолоду. Це заспокоює нервову систему та рефлекси." }, { name: "Скидання напруги", text: "Підніміть плечі до вух якомога вище, затримайте і різко опустіть. Повторіть 3 рази для зняття фізичної напруги." }] },
-      stretch: { title: "Фізичне розслаблення", desc: "Розслабтеся та слухайте гіда.", methods: [
-        { name: "Шия та плечі", text: "Обережно опустіть підборіддя до грудей. Повільно повертайте голову до лівого плеча, потім назад до центру, і до правого плеча.", id: 'neck' },
-        { name: "Скручування", text: "Сядьте рівно, стопи на підлозі. Покладіть праву руку на ліве коліно, а ліву — за спину. Видихніть і м'яко поверніть тулуб вбік.", id: 'twist' },
-        { name: "Розкриття грудей", text: "Зчепіть руки за спиною. Зведіть лопатки разом та підніміть серце вгору до стелі. Дихайте глибоко в центр грудної клітки.", id: 'chest' },
-        { name: "Нахил вперед", text: "На видиху нахиліться вперед від стегон. Дозвольте верхній частині тіла вільно звисати. Розслабте шию і дайте голові повисіти.", id: 'fold' }
-      ]}
-    }
-  },
-  pt: {
-    subtitle: "Ei amigo, tire um momento.", poweredBy: "Beeple", back: "Voltar", start: "Iniciar", stop: "Parar", sounds: "Sons", dailyInsight: "Insight do Dia", minutes: "min", stretchingTitle: "Alongamento Consciente", stretchingDesc: "Liberação física para uma mente calma.",
-    menu: { meeting: "Nervoso antes de reunião", presentation: "Antes de apresentação", anxiety: "Ansiedade geral", upset: "Chateado após reunião", daily: "Meditação Diária", voice: "Afirmações Guiadas" },
-    voiceSessions: {
-      title: "Afirmações Guiadas", desc: "Feche os olhos. Positividade contínua.",
-      themes: [
-        { title: "Valor Próprio", text: "Sou suficiente exatamente como sou. Não preciso provar nada a ninguém. Meu valor não é definido pela minha produtividade. Inspiro confiança e expiro as dúvidas." },
-        { title: "Calma", text: "Estou calmo e centrado. O mundo pode estar caótico, mas meu interior está em paz. Libero a tensão dos ombros e da mandíbula. Meus pensamentos são como nuvens." },
-        { title: "Resiliência", text: "Sobrevivi a 100% dos meus dias ruins. Sou mais forte do que penso. Esta dificuldade é temporária. Possuo os recursos para lidar com tudo. Continuo em frente." }
-      ]
-    },
-    content: {
-      meeting: { title: "Calma Pré-Reunião", desc: "Concentre-se.", methods: [{ name: "Respiração Quadrada", text: "Inspire por 4s, segure 4s, expire 4s, segure 4s. Repita este ciclo para baixar os seus níveis de cortisol rapidamente." }, { name: "Sucesso Visual", text: "Feche os olhos. Visualize a reunião correndo perfeitamente. Veja-se sorrindo, falando com clareza e sendo ouvido." }, { name: "Gole de Água", text: "Dê um gole lento e deliberado de água. Sinta o frescor. Isso reseta os seus nervos e acalma o sistema instantaneamente." }, { name: "Ombros", text: "Encolha os ombros até às orelhas o mais forte que puder e solte-os de repente. Repita 3 vezes para liberar a tensão." }] },
-      stretch: { title: "Liberação Física", desc: "Relaxe e siga o guia.", methods: [
-        { name: "Pescoço e Ombros", text: "Deixe cair suavemente o queixo no peito. Rode lentamente a cabeça para o ombro esquerdo, volte ao centro e para o direito. Respire fundo.", id: 'neck' },
-        { name: "Torção Sentada", text: "Sente-se direito com os pés no chão. Coloque a mão direita no joelho esquerdo e a mão esquerda atrás de si. Rode o tronco suavemente.", id: 'twist' },
-        { name: "Abrir o Peito", text: "Entrelace as mãos atrás das costas. Aperte as omoplatas e eleve o coração em direção ao teto. Respire para o centro do peito.", id: 'chest' },
-        { name: "Flexão à Frente", text: "Expire e incline-se para a frente a partir das ancas. Deixe o tronco pender e relaxe completamente o pescoço e a cabeça.", id: 'fold' }
-      ]}
-    }
-  },
-  es: {
-    subtitle: "Hola amigo, tómate un respiro.", poweredBy: "Beeple", back: "Atrás", start: "Iniciar", stop: "Parar", sounds: "Sonidos", dailyInsight: "Reflexión del Día", minutes: "min", stretchingTitle: "Estiramiento Consciente", stretchingDesc: "Liberación física para una mente calma.",
-    menu: { meeting: "Nervioso por una reunión", presentation: "Antes de presentar", anxiety: "Ansiedad general", upset: "Molesto tras una reunión", daily: "Meditación Diaria", voice: "Afirmaciones Guiadas" },
-    voiceSessions: {
-      title: "Afirmaciones Guiadas", desc: "Cierra los ojos. Positividad continua.",
-      themes: [
-        { title: "Valor Propio", text: "Soy suficiente tal como soy. No necesito demostrar nada a nadie. Mi valor no depende de mi productividad. Inhalo confianza y exhalo todas mis dudas." },
-        { title: "Calma", text: "Estoy tranquilo y centrado. El mundo puede ser caótico, pero mi paz interior es constante. Relajo mis hombros, mi mandíbula y mi frente. Soy como el cielo." },
-        { title: "Resiliencia", text: "He sobrevivido al 100% de mis días malos. Soy más fuerte de lo que creo. Esta dificultad es temporal. Tengo los recursos necesarios para avanzar paso a paso." }
-      ]
-    },
-    content: {
-      meeting: { title: "Calma Pre-Reunión", desc: "Céntrate.", methods: [{ name: "Respiración Cuadrada", text: "Inhala durante 4 segundos, mantén 4, exhala 4 y mantén 4. Repite este ciclo para reducir tus niveles de cortisol." }, { name: "Éxito Visual", text: "Cierra los ojos. Imagina que la reunión sale perfecta. Mírate sonriendo, hablando con claridad y siendo escuchado." }, { name: "Sorbos de Agua", text: "Bebe un poco de agua lentamente. Siente el frescor. Esto calma tus nervios y reinicia tu reflejo de relajación." }, { name: "Bajar Hombros", text: "Sube los hombros hacia las orejas con fuerza y suéltalos de golpe. Hazlo 3 veces para liberar toda la tensión física acumulada." }] },
-      stretch: { title: "Liberación Física", desc: "Relájate y sigue la guía.", methods: [
-        { name: "Cuello y Hombros", text: "Baja suavemente la barbilla hacia el pecho. Gira la cabeza lentamente hacia el hombro izquierdo, vuelve al centro y hacia el derecho.", id: 'neck' },
-        { name: "Giro Sentado", text: "Siéntate derecho con los pies planos. Pon la mano derecha en la rodilla izquierda y la otra detrás. Gira el torso suavemente a la izquierda.", id: 'twist' },
-        { name: "Apertura de Pecho", text: "Cruza las manos por detrás de la espalda. Junta los omóplatos y eleva el pecho hacia el techo. Respira profundamente.", id: 'chest' },
-        { name: "Flexión Adelante", text: "Exhala e inclínate hacia adelante desde la cadera. Deja que el cuerpo cuelgue pesado y relaja completamente el cuello.", id: 'fold' }
       ]}
     }
   }
@@ -329,27 +264,49 @@ const App = () => {
   const t = translations[lang] || translations['en'];
   const activeTheme = activeScenario ? THEMES[activeScenario] : null;
 
-  // --- Voice Sync ---
+  // --- Voice & Speech Sync ---
   useEffect(() => {
+    // Basic setup
     window.speechSynthesis.getVoices();
+    
+    // Global cancel if muted
     if (isMuted) {
       window.speechSynthesis.cancel();
       return;
     }
+
+    // Logic for Stretching scenario
     if (activeScenario === 'stretch' && isBreathing) {
       const text = t.content?.stretch?.methods[activeMethodIndex]?.text;
       if (text) speakText(text, lang, 0.85);
-    } else if (activeScenario === 'voice' && isPlayingVoice) {
-      const text = t.voiceSessions?.themes[currentThemeIndex]?.text;
-      if (text) {
-        const utt = speakText(text, lang, 0.8);
-        utt.onend = () => setIsPlayingVoice(false);
+    } 
+    // FIXED: Logic for Guided Affirmations scenario
+    else if (activeScenario === 'voice') {
+      if (isPlayingVoice) {
+        const text = t.voiceSessions?.themes[currentThemeIndex]?.text;
+        if (text) {
+          const utt = speakText(text, lang, 0.8);
+          utt.onend = () => setIsPlayingVoice(false);
+        }
+      } else {
+        // Stop speaking immediately when isPlayingVoice is false
+        window.speechSynthesis.cancel();
       }
-    } else if (activeScenario !== 'voice') {
+    } 
+    // Stop speaking if scenario is changed or other scenario is inactive
+    else {
       window.speechSynthesis.cancel();
     }
+
+    // Cleanup on unmount or scenario/state change
+    return () => {
+        if (activeScenario !== 'voice' || !isPlayingVoice) {
+            window.speechSynthesis.cancel();
+        }
+    };
   }, [activeMethodIndex, isBreathing, isPlayingVoice, activeScenario, lang, isMuted, currentThemeIndex, t]);
 
+  // --- Timer Logic ---
   useEffect(() => {
     if (isBreathing && timeLeft > 0) {
       timerRef.current = setInterval(() => {
@@ -366,7 +323,7 @@ const App = () => {
       if (timerRef.current) clearInterval(timerRef.current);
     }
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
-  }, [isBreathing]);
+  }, [isBreathing, timeLeft]);
 
   const toggleSound = (type) => {
     if (activeSound === type) {
