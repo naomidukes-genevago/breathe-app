@@ -18,8 +18,23 @@ const THEMES = {
 
 const translations = {
   en: {
-    subtitle: "Hey friend, take a breather.", poweredBy: "Powered by Beeple", back: "Back", start: "Start", stop: "Stop", sounds: "Soundscape", dailyInsight: "Today's Mindful Insight", minutes: "min", stretchingTitle: "Mindful Stretching", stretchingDesc: "Physical release for a calm mind.",
-    menu: { meeting: "Nervous before a meeting", presentation: "Nervous before a presentation", anxiety: "General anxiety", upset: "Upset after a meeting", daily: "Daily Meditation", voice: "Guided Affirmations" },
+    title: "BREATHE",
+    subtitle: "Hey friend, take a breather.",
+    poweredBy: "Powered by Beeple",
+    back: "Back",
+    start: "Start",
+    stop: "Stop",
+    sounds: "Soundscape",
+    dailyInsight: "Today's Mindful Insight",
+    minutes: "min",
+    menu: {
+      meeting: "Nervous before a meeting",
+      presentation: "Nervous before a presentation",
+      anxiety: "General anxiety",
+      upset: "Upset after a meeting",
+      daily: "10-min Daily Meditation",
+      voice: "Guided Affirmations (Voice)",
+    },
     voiceSessions: {
       title: "Guided Affirmations", desc: "Close your eyes. Continuous positivity.",
       themes: [
