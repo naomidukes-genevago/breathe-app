@@ -34,7 +34,7 @@ const translations = {
       presentation: "Nervous before a presentation",
       anxiety: "General anxiety",
       upset: "Upset after a meeting",
-      daily: "10-min Daily Meditation",
+      daily: "Daily Meditation",
       voice: "Guided Affirmations (Voice)",
     },
     voiceSessions: {
@@ -66,7 +66,7 @@ const translations = {
       title: "Affirmations Guidées", desc: "Fermez les yeux. Positivité continue.",
       themes: [
         { title: "Estime de Soi", text: "Je suis assez tel que je suis. Je n'ai besoin de rien prouver à personne. Ma valeur n'est pas définie par ma productivité ou l'opinion des autres. J'inspire la confiance et j'expire le doute. Je suis capable et fort." },
-        { title: "Calme", text: "Je suis calme et centré. Le monde peut être chaotique, mais mon monde intérieur est paisible. Je relâche la tension de mes épaules, de ma mâchoire et de mon front. Mes pensées passent comme des nuages." },
+        { title: "Calme", text: "Je suis calme et centré. Le monde peut être chaotique, maar mijn innerlijke wereld is vredig. Je relâche la tension de mes épaules, de ma mâchoire et de mon front. Mes pensées passent comme des nuages." },
         { title: "Résilience", text: "J'ai survécu à 100% de mes mauvais jours. Je suis plus fort que je ne le pense. Cette difficulté est temporaire. Je possède les ressources pour gérer ce qui arrive. Mon courage est plus fort que ma peur." }
       ]
     },
@@ -95,7 +95,7 @@ const translations = {
       meeting: { title: "Rust voor de Meeting", desc: "Centreer jezelf.", methods: [{ name: "Vierkant Ademhalen", text: "Adem 4 seconden in, houd 4 seconden vast, adem 4 seconden uit, en houd 4 seconden vast. Herhaal dit om je cortisol te verlagen." }, { name: "Visualisatie", text: "Sluit je ogen. Stel je voor dat de vergadering perfect verloopt. Zie jezelf glimlachen, duidelijk spreken en gehoord worden." }, { name: "Slok Water", text: "Neem een langzame, bewuste slok water. Voel de koelte. Dit reset je slikreflex en kalmeert je zenuwstelsel onmiddellijk." }, { name: "Schouder Drop", text: "Trek je schouders zo hoog mogelijk op naar je oren, houd vast, en laat ze dan plotseling vallen. Doe dit 3 keer om spanning los te laten." }] },
       stretch: { title: "Fysieke Ontspanning", desc: "Ontspan en volg de gids.", methods: [
         { name: "Nek & Schouders", text: "Laat je kin voorzichtig op je borst zakken. Rol je hoofd langzaam naar je linkerschouder, terug naar het midden, en dan naar rechts.", id: 'neck' },
-        { name: "Zittende Draai", text: "Zit rechtop met je voeten plat op de grond. Plaats je rechterhand op je linkerknie en je linkerhand achter je. Draai je torso rustig.", id: 'twist' },
+        { name: "Zittende Draai", text: "Zit rechtop met je voeten plat op de grond. Plaats je rechterhand op je linkerknie and je linkerhand achter je. Draai je torso rustig.", id: 'twist' },
         { name: "Borst Opener", text: "Breng je handen achter je rug en verstrengel je vingers. Trek je schouderbladen naar elkaar toe en til je borst op naar het plafond.", id: 'chest' },
         { name: "Vooroverbuiging", text: "Adem uit en buig vanuit je heupen naar voren. Laat je bovenlichaam zwaar hangen naar je schoot. Ontspan je nek volledig.", id: 'fold' }
       ]}
@@ -138,7 +138,7 @@ const translations = {
       stretch: { title: "Liberação Física", desc: "Relaxe e siga o guia.", methods: [
         { name: "Pescoço e Ombros", text: "Deixe cair suavemente o queixo no peito. Rode lentamente a cabeça para o ombro esquerdo, volte ao centro e para o direito. Respire fundo.", id: 'neck' },
         { name: "Torção Sentada", text: "Sente-se direito com os pés no chão. Coloque a mão direita no joelho esquerdo e a mão esquerda atrás de si. Rode o tronco suavemente.", id: 'twist' },
-        { name: "Abrir o Peito", text: "Entrelace as mãos atrás das costas. Aperte as omoplatas e eleve o coração em direção ao teto. Respire.", id: 'chest' },
+        { name: "Abrir o Peito", text: "Entrelace as manos atrás das costas. Aperte as omoplatas e eleve o coração em direção ao teto. Respire.", id: 'chest' },
         { name: "Flexão à Frente", text: "Expire e incline-se para a frente a partir das ancas. Deixe o tronco pender e relaxe completamente o pescoço e a cabeça.", id: 'fold' }
       ]}
     }
@@ -171,7 +171,7 @@ const translations = {
       title: "Vedené afirmace", desc: "Zavřete oči. Buďte pozitivní.",
       themes: [
         { title: "Vlastní hodnota", text: "Jsem dostatečný přesně takový, jaký jsem. Nemusím nikomu nic dokazovat. Moje hodnota není definována mou produktivitou. Nadechuji sebedůvěru a vydechuji pochybnosti. Jsem schopný, silný a hodný dobrých věcí." },
-        { title: "Klid", text: "Jsem klidný a soustředěný. Svět kolem mě může být chaotický, ale můj vnitřní svět je v míru. Uvolňuji napětí z ramen, čelistí a čela. Myšlenky přicházejí a odcházejí jako mraky, ale já zůstávám modrou oblohou za nimi." },
+        { title: "Klid", text: "Jsem klidný a soustředěný. Svět kolem mě může být chaotický, maar mijn innerlijke wereld is vredig. Uvolňuji napětí z ramen, čelistí a čela. Myšlenky přicházejí a odcházejí jako mraky, ale já zůstávám modrou oblohou za nimi." },
         { title: "Odolnost", text: "Přežil jsem sto procent svých špatných dnů. Jsem silnější, než si myslím. Tato obtíž je dočasná. Mám schopnosti zvládnout cokoli, co mi přijde do cesty." }
       ]
     },
@@ -181,7 +181,7 @@ const translations = {
         { name: "Krk a ramena", text: "Jemně spusťte bradu k hrudníku. Pomalu otočte hlavu k levému rameni, pak zpět do středu a k pravému rameni.", id: 'neck' },
         { name: "Torze vsedě", text: "Seďte vzpřímeně s nohama na zemi. Položte pravou ruku na levé koleno a levou ruku za sebe. S výdechem se jemně otočte.", id: 'twist' },
         { name: "Otevření hrudníku", text: "Spojte ruce za zády. Stiskněte lopatky a zvedněte srdce ke stropu. Dýchejte do volného prostoru.", id: 'chest' },
-        { name: "Předklon", text: "S výdechem se předkloňte z kyčlí a nechte horní část těla těžce viset. Uvolněte krk a nechte hlavu volně.", id: 'fold' }
+        { name: "Předklon", text: "S výдеchem se předkloňte z kyčlí a nechte horní část těla těžce viset. Uvolněte krk a nechte hlavu volně.", id: 'fold' }
       ]}
     }
   }
@@ -198,21 +198,25 @@ const facts = [
 // --- Audio Guidance Manager ---
 const getBestVoice = (lang) => {
   const voices = window.speechSynthesis.getVoices();
+  
+  // 1. Specifically target the high-human British Female voice for English
+  if (lang === 'en') {
+    const britFemaleKeywords = ["Sonia", "Alice", "Hazel", "Serena", "Google UK English Female", "Microsoft Sonia Online"];
+    let britVoice = voices.find(v => v.lang.startsWith('en-GB') && britFemaleKeywords.some(k => v.name.includes(k)));
+    if (britVoice) return britVoice;
+    
+    // Fallback to any British English Female
+    britVoice = voices.find(v => v.lang.startsWith('en-GB') && v.name.toLowerCase().includes('female'));
+    if (britVoice) return britVoice;
+  }
+
+  // 2. Generic high quality logic for all other languages
   const searchLang = lang === 'en' ? 'en-GB' : lang;
+  const premiumKeywords = ["Premium", "Natural", "Enhanced", "Google", "Neural", "Online"];
   
-  // High quality keywords for modern OS
-  const premiumKeywords = ["Premium", "Natural", "Enhanced", "Google", "Neural"];
-  
-  // 1. Try to find a premium voice for the specific language
   let voice = voices.find(v => v.lang.startsWith(searchLang) && premiumKeywords.some(k => v.name.includes(k)));
-  
-  // 2. Try any voice for that language
   if (!voice) voice = voices.find(v => v.lang.startsWith(searchLang));
-  
-  // 3. Fallback to common high-quality English if current lang is unavailable
   if (!voice) voice = voices.find(v => v.lang.startsWith('en') && premiumKeywords.some(k => v.name.includes(k)));
-  
-  // 4. Ultimate fallback
   if (!voice) voice = voices[0];
   
   return voice;
@@ -221,10 +225,17 @@ const getBestVoice = (lang) => {
 const speakText = (text, lang, rate = 0.8) => {
   window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = lang === 'en' ? 'en-GB' : lang;
+  const voice = getBestVoice(lang);
+  
+  if (voice) {
+    utterance.voice = voice;
+    utterance.lang = voice.lang; // Force utterance to match the high-quality voice locale
+  } else {
+    utterance.lang = lang === 'en' ? 'en-GB' : lang;
+  }
+  
   utterance.rate = rate;
   utterance.pitch = 1.0; 
-  utterance.voice = getBestVoice(lang);
   window.speechSynthesis.speak(utterance);
   return utterance;
 };
@@ -352,23 +363,19 @@ const App = () => {
 
   // --- Voice & Speech Sync ---
   useEffect(() => {
-    // Ensure voices are loaded
     const loadVoices = () => window.speechSynthesis.getVoices();
     loadVoices();
     window.speechSynthesis.onvoiceschanged = loadVoices;
     
-    // Global cancel if muted
     if (isMuted) {
       window.speechSynthesis.cancel();
       return;
     }
 
-    // Logic for Stretching scenario
     if (activeScenario === 'stretch' && isBreathing) {
       const text = t.content?.stretch?.methods[activeMethodIndex]?.text;
       if (text) speakText(text, lang, 0.85);
     } 
-    // Logic for Guided Affirmations scenario
     else if (activeScenario === 'voice') {
       if (isPlayingVoice) {
         const text = t.voiceSessions?.themes[currentThemeIndex]?.text;
@@ -380,7 +387,6 @@ const App = () => {
         window.speechSynthesis.cancel();
       }
     } 
-    // Stop speaking if scenario is changed or other scenario is inactive
     else {
       window.speechSynthesis.cancel();
     }
